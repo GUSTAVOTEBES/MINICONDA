@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="base.css">
+    <title>CBI STAR Interview Practice</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="./sesion.js"></script>
+    <script defer src="./interview.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-3" href="index.html">
+                    <div class="bg-primary text-white fw-bold rounded-circle d-flex align-items-center justify-content-center" style="width: 52px; height: 52px;">UN</div>
+                    <div class="brand-info">
+                        <h1>UN AMS Preparation</h1>
+                     
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarUN">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarUN">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="previous-papers.html">Previous Papers (4)</a></li>
+                        <li class="nav-item"><a class="nav-link" href="report-writing.html">Report Simulator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="competencies.html">Core Values & Guides</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="interview.html">STAR Interview</a></li>
+                        <li class="nav-item ms-lg-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="logout()">Log Out</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container py-5">
+            <div class="row g-4">
+                <article class="col-12 col-lg-7">
+                    <span class="badge rounded-pill text-bg-primary fw-semibold">COMPETENCY-BASED INTERVIEW (CBI)</span>
+                    <h2 class="fs-2 fw-semibold mt-2">Sample Interview Questions & STAR Stories</h2>
+
+                    <div class="card bg-white border mb-4 shadow-sm">
+                        <div class="card-header fw-bold text-primary d-flex justify-content-between align-items-center">
+                            <span>Common UN AMS Interview Questions</span>
+                            
+                        </div>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item"><strong>Judgement / Decision-Making:</strong> "Tell me about a time you had to make an immediate decision in a high-risk operational situation without waiting for instructions."</li>
+                            <li class="list-group-item"><strong>Leadership:</strong> "Describe a situation where you had to lead a team under intense pressure and keep everyone safe and focused."</li>
+                            <li class="list-group-item"><strong>Integrity:</strong> "Give an example of a time when you witnessed a breach of protocol or unethical conduct. What action did you take?"</li>
+                            <li class="list-group-item"><strong>Planning & Organizing:</strong> "Tell me about a time you designed or adjusted a shift schedule or resource plan to ensure fairness and operational readiness."</li>
+                            <li class="list-group-item"><strong>Respect for Diversity:</strong> "Describe a situation where you worked with people from different backgrounds or resolved a conflict within a team."</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="fs-4 fw-semibold mb-3">My Saved STAR Stories <span class="badge text-bg-secondary" id="total-star">0</span></h3>
+                    <div id="star-list" class="d-flex flex-column gap-3"></div>
+                </article>
+
+                <article class="col-12 col-lg-5">
+                    <form class="d-flex flex-column gap-3 p-4 bg-white border rounded-3 shadow-sm" id="form-star">
+                        <h3 class="fs-5 fw-bold">Draft Response (STAR Method)</h3>
+
+                        <div>
+                            <label class="form-label" for="competency">Target Competency</label>
+                            <select class="form-select" id="competency" name="competency" required>
+                                <option value="Judgement & Decision-Making">Judgement & Decision-Making</option>
+                                <option value="Leadership">Leadership</option>
+                                <option value="Integrity">Integrity</option>
+                                <option value="Planning & Organizing">Planning & Organizing</option>
+                                <option value="Teamwork & Diversity">Teamwork & Diversity</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="question">Interview Question</label>
+                            <input class="form-control" type="text" id="question" name="question" placeholder="e.g. Tell me about a high-stress security incident..." required>
+                        </div>
+
+                        <div>
+                            <label class="form-label fw-semibold text-primary" for="situation">S - Situation (Context)</label>
+                            <textarea class="form-control" id="situation" name="situation" rows="2" placeholder="Where, when, and what was the operational context?" required></textarea>
+                        </div>
+
+                        <div>
+                            <label class="form-label fw-semibold text-primary" for="task">T - Task (Your Responsibility)</label>
+                            <textarea class="form-control" id="task" name="task" rows="2" placeholder="What was your specific role and objective?" required></textarea>
+                        </div>
+
+                        <div>
+                            <label class="form-label fw-semibold text-primary" for="action">A - Action (What YOU did - use 'I')</label>
+                            <textarea class="form-control" id="action" name="action" rows="3" placeholder="Step-by-step actions YOU took..." required></textarea>
+                        </div>
+
+                        <div>
+                            <label class="form-label fw-semibold text-primary" for="result">R - Result (Outcome & Lessons Learned)</label>
+                            <textarea class="form-control" id="result" name="result" rows="2" placeholder="Outcome, safety ensured, lessons learned..." required></textarea>
+                        </div>
+
+                        <button class="btn btn-un w-100" type="submit">Save STAR Story</button>
+                    </form>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-brand">
+            <span>UN AMS Study Hub</span>
+            <p class="small mb-0">Structured STAR Method training for UN Competency-Based Interviews.</p>
+        </div>
+        <div class="footer-section">
+            <span>SECTIONS</span>
+            <a href="index.html">Dashboard</a>
+            <a href="previous-papers.html">Previous Papers</a>
+            <a href="report-writing.html">Report Simulator</a>
+            <a href="competencies.html">Core Values</a>
+            <a href="interview.html">STAR Interview</a>
+        </div>
+    </footer>
+</body>
+</html>

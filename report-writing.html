@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="base.css">
+    <title>UN Report Writing Simulator</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="./sesion.js"></script>
+    <script defer src="./report-writing.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-3" href="index.html">
+                    <div class="bg-primary text-white fw-bold rounded-circle d-flex align-items-center justify-content-center" style="width: 52px; height: 52px;">UN</div>
+                    <div class="brand-info">
+                        <h1>UN AMS Preparation</h1>
+                       
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarUN">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarUN">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="previous-papers.html">Previous Papers (4)</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="report-writing.html">Report Simulator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="competencies.html">Core Values & Guides</a></li>
+                        <li class="nav-item"><a class="nav-link" href="interview.html">STAR Interview</a></li>
+                        <li class="nav-item ms-lg-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="logout()">Log Out</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container py-5">
+            <div class="row g-4">
+                <!-- Left Column: Timer + Writing Area -->
+                <article class="col-12 col-lg-8">
+                    <span class="badge rounded-pill text-bg-primary fw-semibold">TIMED EXAM PRACTICE</span>
+                    <h2 class="fs-2 fw-semibold mt-2">UN Incident Report Writing Simulator</h2>
+
+                    <!-- Countdown Timer Card -->
+                    <div class="card card-un mb-4">
+                        <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                            <div>
+                                <span class="text-muted small d-block">REMAINING EXAM TIME</span>
+                                <span class="timer-display text-primary" id="timer-display">45:00</span>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <select id="time-preset" class="form-select w-auto">
+                                    <option value="30">30 Minutes (Short CLA)</option>
+                                    <option value="45" selected>45 Minutes (Standard Report)</option>
+                                    <option value="60">60 Minutes (Full AMS Scenario)</option>
+                                </select>
+                                <button type="button" class="btn btn-success" id="btn-start">Start</button>
+                                <button type="button" class="btn btn-warning" id="btn-pause">Pause</button>
+                                <button type="button" class="btn btn-outline-secondary" id="btn-reset">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Editor Form -->
+                    <form id="form-report" class="p-4 bg-white border rounded-3 shadow-sm d-flex flex-column gap-3">
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label for="reportTitle" class="form-label fw-semibold">Scenario / Case Title</label>
+                                <input type="text" id="reportTitle" class="form-control" placeholder="e.g. CLA Test # 49 - Traffic Accident Near City Market" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="reportRef" class="form-label fw-semibold">Incident Ref #</label>
+                                <input type="text" id="reportRef" class="form-control" placeholder="e.g. UNPOL/2026/014">
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button type="button" class="btn btn-sm btn-outline-primary" id="btn-insert-template">
+                                + Insert Official UN Report Template
+                            </button>
+                            <span class="badge text-bg-light border text-dark" id="word-counter">Words: 0 | Characters: 0</span>
+                        </div>
+
+                        <div>
+                            <textarea id="reportBody" class="form-control font-monospace" rows="14" placeholder="Write your chronological UN Police / Mission report here using objective, past-tense English..." required></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="submit" class="btn btn-un px-4">Save Draft to Archive</button>
+                        </div>
+                    </form>
+                </article>
+
+                <!-- Right Column: Checklist + Saved Drafts -->
+                <article class="col-12 col-lg-4">
+                    <div class="card card-un mb-4">
+                        <div class="card-header fw-bold text-primary">UN Evaluator Checklist (5 W's + 1 H)</div>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item"><strong>1. Header:</strong> TO, FROM, DATE, SUBJECT, REF clearly stated.</li>
+                            <li class="list-group-item"><strong>2. Chronological Order:</strong> Exact 24-hour time format (e.g., 14:30 hrs).</li>
+                            <li class="list-group-item"><strong>3. Facts Only:</strong> Use past simple/continuous; avoid personal opinions or assumptions.</li>
+                            <li class="list-group-item"><strong>4. Complete Details:</strong> Full names, ages, nationalities, vehicle plates, injuries, and damages.</li>
+                            <li class="list-group-item"><strong>5. Action Taken & Follow-up:</strong> First aid, scene preservation, handover to local police, and next steps.</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="fs-5 fw-bold mb-3">Saved Report Drafts <span class="badge text-bg-secondary" id="drafts-count">0</span></h3>
+                    <div id="saved-drafts-list" class="d-flex flex-column gap-3"></div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-brand">
+            <span>UN AMS Study Hub</span>
+            <p class="small mb-0">Timed Report Writing Simulator for UN Peacekeeping Assessments.</p>
+        </div>
+        <div class="footer-section">
+            <span>SECTIONS</span>
+            <a href="index.html">Dashboard</a>
+            <a href="previous-papers.html">Previous Papers</a>
+            <a href="report-writing.html">Report Simulator</a>
+            <a href="competencies.html">Core Values</a>
+            <a href="interview.html">STAR Interview</a>
+        </div>
+    </footer>
+</body>
+</html>
